@@ -1,15 +1,18 @@
-'use client'
+// import { Button } from "@/components/ui/button";
+import { createClient } from "../../utils/supabase/server";
+import { redirect } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
-import { getSession, useSession } from "next-auth/react";
-
-export default function AddPost({ user }) {
+export default async function AddPost() {
+	const supabase = createClient()
+	const { data: user, errorGetUser } = await supabase.auth.getUser()
+    let username = ''
+    if(!errorGetUser) {
+        username = user.user.user_metadata.preferred_username
+    } else {
+        redirect('/login')
+    }
     // const [postType, setPostType] = useState('')
     // const session = await getServerSession(authOptions)
-
-    const [postText, setPostText] = useState('')
 
     // const supabase = createClientComponentClient()
     // const [users, setUsers] = useState([])
@@ -23,26 +26,16 @@ export default function AddPost({ user }) {
     //   getUsers()
     // }, [])
 
+    async function addPost() {
+        'use server'
+        
+    }
+
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <form onSubmit={() => handleFormSubmit()}>
-          <input onChange={(e) => setPostText(e.target.value)} required placeholder='Your Post Text' type='text'></input>
-            {/* <select onChange={(e) => setPostType(e.target.value)} value={postType}>
-                <option>Text</option>
-                <option>Image</option>
-            </select>
-
-            { postType === 'Image' ? 
-                    <>
-                        <label>Your Image</label>
-                        <input required type='file' accept='image/png, image/gif, image/jpeg'></input>
-                    </> :
-                    <>
-                        <label>Your Text</label>
-                        <input required type='text'></input>
-                    </>
-            } */}
-            <Button type='submit'>Submit</Button>
+        <form action={addPost}>
+          <input required placeholder='Your Post Text' type='text'/>
+            <button type='submit'>Submit</button>
         </form>
       </main>
     );

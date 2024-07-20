@@ -7,7 +7,10 @@ export default function Login() {
         'use server'
 
         const supabase = createClient();
-        const { error } = await supabase.auth.signOut(redirect('/'))
+        const { error } = await supabase.auth.signOut()
+        if(!error) {
+            redirect('/')
+        }
     }
     
     return (
