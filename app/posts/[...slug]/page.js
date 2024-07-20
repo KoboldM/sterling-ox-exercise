@@ -1,14 +1,22 @@
-import { supabase } from "@/app/supabase"
+
+
+// import { createClient } from "../utils/supabase/server";
+import { createClient } from "../../../utils/supabase/server";
 
 export default async function PostID({ params }) {
     const slug = parseInt(params.slug[0])
-    const { data: post } = await supabase.schema('next_auth').from('post').select().eq('id', slug)
-    const { data: comments } = await supabase.schema('next_auth').from('comment').select().eq('post_id', slug)
+    const supabase = createClient()
+	const { data: post, error } = await supabase
+	.from('post')
+    .select()
+    .eq('id', slug)
+    const { data: comments } = await supabase
+    .from('comment')
+    .select()
+    .eq('post_id', slug)
 
     const queryPost = post[0]
     const localDate = new Date(queryPost.created_at).toLocaleString()
-
-    // console.log(comments)
 
     return(
         <div className="flex min-h-screen flex-col items-center justify-between p-24 text-center">
