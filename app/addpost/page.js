@@ -11,8 +11,6 @@ export default function AddPost({ user }) {
 
     const [postText, setPostText] = useState('')
 
-    
-
     // const supabase = createClientComponentClient()
     // const [users, setUsers] = useState([])
   

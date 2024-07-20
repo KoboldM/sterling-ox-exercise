@@ -1,3 +1,21 @@
+https://supabase.com/docs/guides/auth/managing-user-data
+https://dev.to/sruhleder/creating-user-profiles-on-sign-up-in-supabase-5037
+https://supabase.com/docs/guides/auth/social-login/auth-github?queryGroups=environment&environment=server
+https://supabase.com/docs/guides/auth/server-side/nextjs?queryGroups=router&router=app
+
+
+notes:
+    1. Create Supabase
+        1.1 Authentication -> Providers
+            1.1.2 client id and secret from github oauth
+        1.2 Triggers and Functions for User Table
+    2. Create Github OAuth
+        2.1 homepage url to either localhost or deployed url
+        2.2 authorizaton callback url to callback url of supabase auth provider (github)
+    3. env management in vercel
+
+need to follow managing 
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
