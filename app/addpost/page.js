@@ -13,8 +13,9 @@ export default async function AddPost() {
         if(errorGetUser) {
             console.log(errorGetUser)
         }
-        
-        if (formData.get('file')) {
+
+        if (formData.get('file').type === 'image/jpeg' || formData.get('file').type === 'image/gif' || formData.get('file').type === 'image/png') {
+            console.log('are we here?')
             fileName = randomBytes(20).toString('hex')
             const {data, error} = await supabase
             .storage.from('image')

@@ -31,7 +31,7 @@ export default async function PostID({ params }) {
 
         const { data: user, errorGetUser } = await supabaseAddComment.auth.getUser()
 
-        if (formData.get('file')) {
+        if (formData.get('file').type === 'image/jpeg' || formData.get('file').type === 'image/gif' || formData.get('file').type === 'image/png') {
             fileName = randomBytes(20).toString('hex')
             const {data, error} = await supabaseAddComment
             .storage.from('image')
