@@ -1,59 +1,36 @@
-https://supabase.com/docs/guides/auth/managing-user-data
-https://dev.to/sruhleder/creating-user-profiles-on-sign-up-in-supabase-5037
-https://supabase.com/docs/guides/auth/social-login/auth-github?queryGroups=environment&environment=server
-https://supabase.com/docs/guides/auth/server-side/nextjs?queryGroups=router&router=app
-https://www.youtube.com/watch?v=cN2RE6EpExE
-
-notes:
-    1. Create Supabase
-        1.1 Authentication -> Providers
-            1.1.2 client id and secret from github oauth
-        1.2 Triggers and Functions for User Table
-            1.2.1 policies
-        1.3 RLS on posts and comment table
-        1.4 create bucket and storage
-            1.4.1 fix policies
-        1.5 url configuration
-    2. Create Github OAuth
-        2.1 homepage url to either localhost or deployed url
-        2.2 authorizaton callback url to callback url of supabase auth provider (github)
-    3. env management in vercel
-
-need to follow managing 
-
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Overview of Solution
+    NextJS for frontend
+    TailwindCSS for design
+    Github for OAuth & code repository
+    Supabase for Middleware and Backend
+    Vercel for deployment
 
-First, run the development server:
+## Explanation of Architecture
+    NextJS was used for the frontend development, and mainly used server side components since it handled blog posts. Because server side components are best used for SEO, and the point of (most) blog posts are for other people to read it.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    Supabase was used for the authentication middleware and backend. The middleware is to prevent unauthorized users from accessing different certain parts of the website, and blocking certain actions like not allowing unregistered users to add posts or comments. The posts and comments also support image posting
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    Github was also used for OAuth/Open Authorization. The info from Github OAuth is stored in Supabase, and is what is used to have references to the posts and comments.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+    Vercel was used to deploy the entire project.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Approach and Methodology
+    I started with the creation of the Supabase and Github OAuth. I created the necessary columns, schemas, tables, policies, providers, and URL configuration in Supabase for both local and production environments. I created a project with NextJS and started development as usual. After development (connecting to the backend, changing design, basic setup, etc.), I pushed the NextJS project into Github, which was then deployed to Vercel which watches the changes live if there are changes in the main branch.
 
-## Learn More
+    tl;dr:
+        1. Created Supabase and its required factors (schemas, columns, policies, URL configuration)
+        2. Created an OAuth app under Github 
+        3. Make NextJS app 
+        4. Pushed NextJS to Github
+        5. Connected the project to Vercel
+        6. Deployed Vercel to the repository and main branch of the project
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## How to run locally
+    1. Clone the project
+    2. Use the command prompt to enter the directory
+    3. **npm install** to install all the packages
+    4. Copy paste the .env file into the root folder of the project ( ask for a copy from me )
+    5. **npm run dev** under command prompt to start the project
+    6. Open the project in your web browser ( http://localhost:3000 )
