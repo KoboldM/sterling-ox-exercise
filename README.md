@@ -12,7 +12,8 @@ notes:
             1.2.1 policies
         1.3 RLS on posts and comment table
         1.4 create bucket and storage
-            1.5 fix policies
+            1.4.1 fix policies
+        1.5 url configuration
     2. Create Github OAuth
         2.1 homepage url to either localhost or deployed url
         2.2 authorizaton callback url to callback url of supabase auth provider (github)
