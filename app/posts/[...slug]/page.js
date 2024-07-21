@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Button from "../../../components/button/button";
 import { createClient } from "../../../utils/supabase/server";
 import { headers } from "next/headers";
+import { randomBytes } from "node:crypto";
 
 export default async function PostID({ params }) {
     const slug = parseInt(params.slug[0])
@@ -25,13 +26,35 @@ export default async function PostID({ params }) {
     async function addComment(formData) {
         'use server'
         const supabaseAddComment = createClient()
+        let fileName = ''
+        let image_url = ''
+
         const { data: user, errorGetUser } = await supabaseAddComment.auth.getUser()
+
+        if (formData.get('file')) {
+            fileName = randomBytes(20).toString('hex')
+            const {data, error} = await supabaseAddComment
+            .storage.from('image')
+            .upload(`${fileName}`,formData.get('file'))
+
+            if(error) {
+                console.log(error)
+            }
+
+            const {data: publicURL, getPublicURLError} = supabaseAddComment
+            .storage.from('image')
+            .getPublicUrl(`${fileName}`)
+
+            image_url = publicURL.publicUrl
+        }
+
         const { data: comment, error } = await supabaseAddComment
         .from('comment')
         .insert({
             post_id: slug,
             posted_by: user.user.user_metadata.preferred_username,
-            content: formData.get('content')
+            content: formData.get('content'),
+            image_url
         })
         .select()
         if(!error) {
@@ -75,6 +98,7 @@ export default async function PostID({ params }) {
                     <div>
                         <form action={addComment} id='formpost'>
                             <input required type='text' id='content' name='content' placeholder='Comment'/>
+                            <input type='file' id='file' name='file' accept='image/jpeg, image/gif, image/png'/>
                             <button type='submit'>Submit</button>
                         </form>
                     </div>

@@ -2,7 +2,7 @@ https://supabase.com/docs/guides/auth/managing-user-data
 https://dev.to/sruhleder/creating-user-profiles-on-sign-up-in-supabase-5037
 https://supabase.com/docs/guides/auth/social-login/auth-github?queryGroups=environment&environment=server
 https://supabase.com/docs/guides/auth/server-side/nextjs?queryGroups=router&router=app
-
+https://www.youtube.com/watch?v=cN2RE6EpExE
 
 notes:
     1. Create Supabase

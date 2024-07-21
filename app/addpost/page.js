@@ -24,7 +24,7 @@ export default async function AddPost() {
                 console.log(error)
             }
 
-            const {data: publicURL} = supabase
+            const {data: publicURL, getPublicURLError} = supabase
             .storage.from('image')
             .getPublicUrl(`${fileName}`)
 
@@ -43,9 +43,6 @@ export default async function AddPost() {
         if(!error) {
             redirect(`/posts/${data[0].id}`)
         }
-
-        // console.log(formData.get('file'))
-        // console.log(data)
     }
 
     return (
