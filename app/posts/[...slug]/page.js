@@ -5,9 +5,9 @@ import { createClient } from "../../../utils/supabase/server";
 import { headers } from "next/headers";
 import { randomBytes } from "node:crypto";
 
+
 export default async function PostID({ params }) {
     const slug = parseInt(params.slug[0])
-    const currentURL = headers().get('referer')
     const supabase = createClient()
 	const { data: post, errorGetPost } = await supabase
         .from('post')
@@ -58,7 +58,7 @@ export default async function PostID({ params }) {
         })
         .select()
         if(!error) {
-            redirect(currentURL)
+            redirect(`/posts/${slug}`)
         }
     }
 
@@ -93,8 +93,7 @@ export default async function PostID({ params }) {
                     </div>)
                 })}
 
-                {
-                    user.user ?
+                { user.user ?
                     <div>
                         <form action={addComment} id='formpost'>
                             <input required type='text' id='content' name='content' placeholder='Comment'/>
