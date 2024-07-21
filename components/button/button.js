@@ -3,10 +3,12 @@
 export default function Button(props) {
     console.log('#### props', props)
     return(
-        <div
+        <button
+            {...props}
             className='hover:cursor-pointer'
-            onClick={() => props.onClick()}>
+            >
+                {console.log(props)}
                 {props.text}
-        </div>
+        </button>
     )
 }

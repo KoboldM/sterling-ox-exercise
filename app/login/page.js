@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default function Login() {
-    const signIn = async () => {
+    async function signIn () {
         'use server'
 
         const supabase = createClient();
@@ -22,7 +22,6 @@ export default function Login() {
           	console.log(error);
         } else {
           	return redirect(data.url);
-          	// return redirect('/');
         }
     };
     

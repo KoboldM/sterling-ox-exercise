@@ -54,7 +54,7 @@ export async function updateSession(request: NextRequest) {
 // if you visit addpost page without user, it redirects to login
 if(
     !user &&
-    !request.nextUrl.pathname.startsWith('/addpost')
+    request.nextUrl.pathname.startsWith('/addpost')
 ) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'

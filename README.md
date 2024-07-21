@@ -9,6 +9,7 @@ notes:
         1.1 Authentication -> Providers
             1.1.2 client id and secret from github oauth
         1.2 Triggers and Functions for User Table
+        1.3 RLS on posts and comment table
     2. Create Github OAuth
         2.1 homepage url to either localhost or deployed url
         2.2 authorizaton callback url to callback url of supabase auth provider (github)
