@@ -8,10 +8,7 @@ import Button from '../components/button/button'
 
 export default async function Home() {
 	const supabase = createClient()
-
 	const { data: user, errorGetUser } = await supabase.auth.getUser()
-	// console.log('###: ',user)
-
 	const { data: post, error } = await supabase
 	.from('post')
 	.select()
