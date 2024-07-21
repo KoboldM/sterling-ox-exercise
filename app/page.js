@@ -1,10 +1,7 @@
 // import { Form, FormField } from "@/components/ui/form";
-// import Header from "@/components/header/header";
 import { redirect } from "next/navigation";
 import { createClient } from "../utils/supabase/server";
-// import { Button } from '../components/button/button'
 import Button from '../components/button/button'
-
 
 export default async function Home() {
 	const supabase = createClient()
@@ -28,7 +25,6 @@ export default async function Home() {
 			<div className='row-span-1 text-4xl text-center p-4'>Company Blabber</div>
 
 			<main className="flex flex-col items-center justify-between p-24 row-span-5">
-				{/* <Header/> */}
 				<div className='w-full grid grid-cols-2 gap-4'>
 				{ post.map(datum => (
 					<div className='text-center' key={datum.id}>
