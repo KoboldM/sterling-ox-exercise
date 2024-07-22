@@ -21,8 +21,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
     tl;dr:
         1. Created Supabase and its required factors (schemas, columns, policies, URL configuration)
-        2. Created an OAuth app under Github 
-        3. Make NextJS app 
+        2. Created an OAuth app under Github
+        3. Make NextJS app
         4. Pushed NextJS to Github
         5. Connected the project to Vercel
         6. Deployed Vercel to the repository and main branch of the project
