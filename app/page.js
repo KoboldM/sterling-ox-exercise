@@ -22,14 +22,14 @@ export default async function Home() {
 	}
 
 	return (
-		<div className='grid grid-rows-6 w-full '>
-			<div className='row-span-1 text-4xl text-center pt-4'>Company Blabber</div>
+		<div className='grid grid-rows-12 max-h-screen w-full'>
+			<div className='text-4xl row-span-1 text-center self-center h-full pt-4'>Company Blabber</div>
 
-			<main className="row-span-5 flex flex-col items-center px-24">
+			<div className="row-span-10 items-center px-24 overflow-auto">
 				<div className='w-full grid grid-cols-2 gap-4'>
 				{ post.map(datum => (
 					<Link
-                        className='text-center rounded-2xl hover:cursor-pointer bg-black bg-opacity-0 hover:bg-opacity-50 transition-all duration-150'
+                        className='text-center rounded-2xl hover:cursor-pointer bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-200'
                         key={datum.id}
                         href={`posts/${datum.id}`}
                     >
@@ -42,21 +42,27 @@ export default async function Home() {
 					))
 				}
 				</div>
-			</main>
+			</div>
 
-			<div className='row-span-1 text-center p-4'>
+			<div className='row-span-1 text-center p-4 self-center'>
 			{ user.user ?
-			<Button
-				text='Add Your Own Post'
-				onClick={goAddPost}
-			>
-			</Button>
-			:
-			<Button
-				text='Login to add to your own post'
-				onClick={goLogin}
-			>
-			</Button>
+                <Link href='/addpost' 
+                    className='bg-blue-50 w-16 px-8 py-3
+                        rounded-full text-blue-700 border-0
+                        text-sm font-medium hover:bg-amber-50 hover:text-amber-700
+                        transition-colors duration-200'
+                >
+                    Add Your Own Post
+                </Link>
+                :
+                <Link href='/login'
+                    className='bg-blue-50 w-16 px-8 py-3
+                        rounded-full text-blue-700 border-0
+                        text-sm font-medium hover:bg-amber-50 hover:text-amber-700
+                        transition-colors duration-200'
+                >
+                    Login
+                </Link>
 			}
 
 			</div>

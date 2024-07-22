@@ -2,10 +2,8 @@
 import { redirect } from "next/navigation";
 import Button from "../../../components/button/button";
 import { createClient } from "../../../utils/supabase/server";
-import { headers } from "next/headers";
 import { randomBytes } from "node:crypto";
 import Image from "next/image";
-
 
 export default async function PostID({ params }) {
     const slug = parseInt(params.slug[0])
