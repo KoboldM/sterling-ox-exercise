@@ -26,7 +26,7 @@ export default async function Home() {
 			<div className='text-4xl row-span-1 text-center self-center h-full pt-4'>Company Blabber</div>
 
 			<div className="row-span-10 items-center px-24 overflow-auto">
-				<div className='w-full grid grid-cols-2 gap-4'>
+				<div className='w-full grid grid-cols-1 md:grid-cols-2 gap-4'>
 				{ post.map(datum => (
 					<Link
                         className='text-center rounded-2xl hover:cursor-pointer bg-black bg-opacity-0 hover:bg-opacity-10 transition-all duration-200'
