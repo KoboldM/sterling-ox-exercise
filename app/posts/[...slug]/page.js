@@ -4,6 +4,7 @@ import Button from "../../../components/button/button";
 import { createClient } from "../../../utils/supabase/server";
 import { headers } from "next/headers";
 import { randomBytes } from "node:crypto";
+import Image from "next/image";
 
 
 export default async function PostID({ params }) {
@@ -63,8 +64,8 @@ export default async function PostID({ params }) {
     }
 
     return(
-        <div className="flex min-h-screen flex-col items-center justify-between p-24 text-center">
-            <div>
+        <div className="flex min-h-screen flex-col items-center p-24 pt-4 text-center">
+            <div className='mb-16'>
                 <h1 className="text-4xl">
                     {queryPost.title}
                 </h1>
@@ -75,34 +76,98 @@ export default async function PostID({ params }) {
                     Posted on {localDate}
                 </h3>
 
-                <p className="mt-4">
-                    {queryPost.content}
-                </p>
+                <div className="mt-4">
+                    <div className="p-6">
+                        {queryPost.content}
+                    </div>
+                    <div className='h-96 w-96 relative'>
+                        {!queryPost.image_url ? <></> :
+                            <Image
+                                src={queryPost.image_url}
+                                alt={`${queryPost.title} image`}
+                                layout="fill"
+                                unoptimized
+                            />
+                        }
+                    </div>
+                </div>
             </div>
 
             <div className="w-full border-t text-left">
-                <h3 className="text-lg">
-                    Comments:
-                </h3>
-                {comments.map(comment => {
-                    let localDate = new Date(comment.created_at).toLocaleTimeString()
-                    return(
-                    <div key={comment.id}>
-                        {comment.posted_by} - {comment.content}
-                        - {localDate}
-                    </div>)
-                })}
-
                 { user.user ?
                     <div>
-                        <form action={addComment} id='formpost'>
-                            <input required type='text' id='content' name='content' placeholder='Comment'/>
-                            <input type='file' id='file' name='file' accept='image/jpeg, image/gif, image/png'/>
-                            <button type='submit'>Submit</button>
+                        <form className='flex flex-col' action={addComment} id='formpost'>
+                            <textarea
+                                className='w-1/3 my-4 border-2 rounded-xl p-2'
+                                required
+                                id='content'
+                                name='content'
+                                placeholder='Add Comment'
+                                maxLength={600}
+                                // cols={100}
+                                rows={4}
+                                style={{
+                                    resize: 'none'
+                                }}
+                            />
+                            <div className='max-w-max'>
+                                <input type="file" id='file' name='file' accept='image/jpeg, image/gif, image/png'
+                                    class="text-sm text-grey-500 mb-2
+                                        file:mr-5 file:py-2 file:px-6
+                                        file:rounded-full file:border-0
+                                        file:text-sm file:font-medium
+                                        file:bg-blue-50 file:text-blue-700
+                                        hover:file:cursor-pointer hover:file:bg-amber-50
+                                        hover:file:text-amber-700
+                                        file:transition-colors file:duration-200"
+                                />
+                            </div>
+
+                            <button type='submit' 
+                                className="bg-blue-50 w-16
+                                py-1 rounded-full text-blue-700 border-0
+                                text-sm font-medium hover:bg-amber-50 hover:text-amber-700
+                                transition-colors duration-200
+                            ">
+                                Submit
+                            </button>
                         </form>
                     </div>
                     : <></>
                 }
+                {comments.map(comment => {
+                    let localDate = new Date(comment.created_at).toLocaleString()
+                    return(
+                        <div key={comment.id} className='border-b-2 py-4'>
+                            <div className="flex flex-row">
+                                <div className='font-bold'>
+                                    {comment.posted_by}
+                                </div>
+                                
+                                <div className='text-sm self-center ml-2'>
+                                    {localDate}
+                                </div>
+                            </div>
+
+                            <div className="pt-2">
+                                {comment.content}
+                            </div>
+
+                            { !comment.image_url ? <></> :
+                                <div className='h-96 w-96 relative'>
+                                    {!comment.image_url ? <></> :
+                                        <Image
+                                            src={comment.image_url}
+                                            alt={`${comment.title} image`}
+                                            layout="fill"
+                                            unoptimized
+                                        />
+                                    }
+                                </div>
+                            }
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )
