@@ -78,7 +78,7 @@ export default async function PostID({ params }) {
                     <div className="p-6">
                         {queryPost.content}
                     </div>
-                    <div className='h-96 w-96 relative'>
+                    <div className='h-96 w-96 m-auto relative'>
                         {!queryPost.image_url ? <></> :
                             <Image
                                 src={queryPost.image_url}
