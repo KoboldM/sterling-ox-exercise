@@ -102,7 +102,6 @@ export default async function PostID({ params }) {
                                 name='content'
                                 placeholder='Add Comment'
                                 maxLength={600}
-                                // cols={100}
                                 rows={4}
                                 style={{
                                     resize: 'none'
@@ -110,7 +109,7 @@ export default async function PostID({ params }) {
                             />
                             <div className='max-w-max'>
                                 <input type="file" id='file' name='file' accept='image/jpeg, image/gif, image/png'
-                                    class="text-sm text-grey-500 mb-2
+                                    className="text-sm text-grey-500 mb-2
                                         file:mr-5 file:py-2 file:px-6
                                         file:rounded-full file:border-0
                                         file:text-sm file:font-medium

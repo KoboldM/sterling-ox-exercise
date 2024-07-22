@@ -46,12 +46,26 @@ export default async function AddPost() {
     }
 
     return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <form action={addPost} id='formpost'>
-            <input required placeholder='Your Post Title' type='text' name='title' id='title'/>
-            <input required placeholder='Your Post Content' type='text' name='content' id='content'/>
-            <input type='file' accept='image/jpeg, image/gif, image/png' name='file' id='file'/>
-            <button type='submit'>Submit</button>
+      <main className="flex min-h-screen flex-col items-center justify-center p-24">
+        <form action={addPost} id='formpost' className='flex flex-col gap-4'>
+            <input className='border-2 rounded-xl p-2' required placeholder='Your Post Title' type='text' name='title' id='title'/>
+            <textarea style={{resize: 'none'}} rows={4} cols={75} className='border-2 rounded-xl p-2' required placeholder='Your Post Content' type='text' name='content' id='content'/>
+            <input type='file' accept='image/jpeg, image/gif, image/png' name='file' id='file'
+                className="text-sm text-grey-500 mb-2
+                file:mr-5 file:py-2 file:px-6
+                file:rounded-full file:border-0
+                file:text-sm file:font-medium
+                file:bg-blue-50 file:text-blue-700
+                hover:file:cursor-pointer hover:file:bg-amber-50
+                hover:file:text-amber-700
+                file:transition-colors file:duration-200"
+            />
+            <button type='submit' 
+                className='bg-blue-50 w-16
+                    py-1 rounded-full text-blue-700 border-0
+                    text-sm font-medium hover:bg-amber-50 hover:text-amber-700
+                    transition-colors duration-200'>
+            Submit</button>
         </form>
       </main>
     );

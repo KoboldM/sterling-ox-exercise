@@ -1,4 +1,3 @@
-// import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
 import { createClient } from "../../utils/supabase/server";
 import { headers } from "next/headers";
@@ -26,16 +25,20 @@ export default function Login() {
     };
     
     return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="flex flex-col items-center min-h-screen">
         <form
             action={signIn}
-            className="flex-1 flex min-h-screen justify-center items-center"
+            className="flex-1 flex flex-col justify-center items-center"
         >
-            {/* <Button type='submit'> */}
-				<button type='submit'>
-                	<Github className="mr-2 h-4 w-4" /> Login with Github
+				<button type='submit' 
+                    className="bg-blue-50 w-full
+                        rounded-full text-blue-700 border-0
+                        text-sm font-medium hover:bg-amber-50 hover:text-amber-700
+                        transition-colors duration-200 flex flex-row gap-2 p-4"
+                >
+                	<Github className="h-4 w-4" /> 
+                    Login with Github
 				</button>
-            {/* </Button> */}
         </form>
       </main>
     );

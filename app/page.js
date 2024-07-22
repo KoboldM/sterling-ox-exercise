@@ -1,7 +1,5 @@
 // import { Form, FormField } from "@/components/ui/form";
-import { redirect } from "next/navigation";
 import { createClient } from "../utils/supabase/server";
-import Button from '../components/button/button'
 import Link from "next/link";
 
 export default async function Home() {
@@ -10,16 +8,6 @@ export default async function Home() {
 	const { data: post, error } = await supabase
 	.from('post')
 	.select()
-
-	async function goAddPost() {
-		'use server'
-		redirect('/addpost')
-	}
-
-	async function goLogin() {
-		'use server'
-		redirect('/')
-	}
 
 	return (
 		<div className='grid grid-rows-12 max-h-screen w-full'>
