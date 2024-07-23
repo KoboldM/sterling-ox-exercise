@@ -4,6 +4,7 @@ import Button from "../../../components/button/button";
 import { createClient } from "../../../utils/supabase/server";
 import { randomBytes } from "node:crypto";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function PostID({ params }) {
     const slug = parseInt(params.slug[0])
@@ -130,7 +131,20 @@ export default async function PostID({ params }) {
                             </button>
                         </form>
                     </div>
-                    : <></>
+                    : 
+                    <div className='flex flex-col border-b-2 py-4 gap-4'>
+                        <div>
+                            To add your own comment, please login
+                        </div>
+                        <Link href='/login'
+                            className='bg-blue-50 w-16 px-4 py-2
+                                rounded-full text-blue-700 border-0
+                                text-sm font-medium hover:bg-amber-50 hover:text-amber-700
+                                transition-colors duration-200'
+                        >
+                            Login
+                        </Link>
+                    </div>
                 }
                 {comments.map(comment => {
                     let localDate = new Date(comment.created_at).toLocaleString()

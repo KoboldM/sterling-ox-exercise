@@ -27,7 +27,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
         5. Connected the project to Vercel
         6. Deployed Vercel to the repository and main branch of the project
 
-    Sidenote: I admit the quality of the project could be higher, but it took me some time to learn how Supabase works, trying to debug ShadCN to javascript ( which I opted to use instead of learning TypeScript at the same time for the project because it'd take too long if I tried to maximize both at the same time [but could've been better in hindsight]). It also didn't help that I didn't have a lot of free time the entire week to work on this.
+    Sidenote: I admit the quality of the project could be higher, but it took me some time to learn how Supabase works, trying to debug ShadCN to Javascript ( which I opted to use instead of learning TypeScript at the same time for the project because it'd take too long if I tried to maximize both at the same time [but could've been better in hindsight]). It also didn't help that I didn't have a lot of free time the entire week to work on this. Also, there are no unit tests for the project because it'd take too long as well ( little experience, would've needed more time )
 
 ## How to run locally
     1. Clone the project

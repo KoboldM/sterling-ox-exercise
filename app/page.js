@@ -9,11 +9,21 @@ export default async function Home() {
 	.from('post')
 	.select()
 
+    async function signOut() {
+        'use server'
+
+        const supabase = createClient();
+        const { error } = await supabase.auth.signOut()
+        if(!error) {
+            redirect('/')
+        }
+    }
+
 	return (
 		<div className='grid grid-rows-12 max-h-screen w-full'>
-			<div className='text-4xl row-span-1 text-center self-center h-full pt-4'>Company Blabber</div>
+			<div className='text-4xl row-span-1 text-center self-center h-full py-4 pb-7'>Company Blabber</div>
 
-			<div className="row-span-10 items-center px-24 overflow-auto">
+			<div className="row-span-10 h-full items-center px-24 overflow-auto">
 				<div className='w-full grid grid-cols-1 md:grid-cols-2 gap-4'>
 				{ post.map(datum => (
 					<Link
@@ -34,14 +44,29 @@ export default async function Home() {
 
 			<div className='row-span-1 text-center p-4 self-center'>
 			{ user.user ?
-                <Link href='/addpost' 
-                    className='bg-blue-50 w-16 px-8 py-3
-                        rounded-full text-blue-700 border-0
-                        text-sm font-medium hover:bg-amber-50 hover:text-amber-700
-                        transition-colors duration-200'
-                >
-                    Add Your Own Post
-                </Link>
+                <div className='flex flex-row justify-center items-center gap-4'>
+                    <div>
+                        <Link href='/addpost'
+                            className='bg-blue-50 w-16 px-8 py-3
+                                rounded-full text-blue-700 border-0
+                                text-sm font-medium hover:bg-amber-50 hover:text-amber-700
+                                transition-colors duration-200'
+                        >
+                            Add Your Own Post
+                        </Link>
+                    </div>
+
+                    <form action={signOut} className='self-end'>
+                        <button type='submit'
+                            className="bg-blue-50
+                            rounded-full text-blue-700 border-0
+                            text-sm font-medium hover:bg-red-400 hover:text-white
+                            transition-colors duration-200 flex flex-row gap-2 px-8 py-3"
+                        >
+                            Logout
+                        </button>
+                    </form>
+                </div>
                 :
                 <Link href='/login'
                     className='bg-blue-50 w-16 px-8 py-3
